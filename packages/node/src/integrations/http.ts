@@ -349,11 +349,7 @@ function patchRequestToCaptureBody(req: HTTPModuleRequestIncomingMessage, normal
           const callback = new Proxy(listener, {
             apply: (target, thisArg, args: Parameters<typeof listener>) => {
               const chunk = args[0];
-              try {
-                chunks.push(chunk);
-              } catch {
-                // ignore errors here...
-              }
+              chunks.push(chunk);
               return Reflect.apply(target, thisArg, args);
             },
           });
@@ -366,11 +362,15 @@ function patchRequestToCaptureBody(req: HTTPModuleRequestIncomingMessage, normal
         if (event === 'end') {
           const callback = new Proxy(listener, {
             apply: (target, thisArg, args) => {
-              const body = Buffer.concat(chunks).toString('utf-8');
+              try {
+                const body = Buffer.concat(chunks).toString('utf-8');
 
-              // We mutate the passed in normalizedRequest and add the body to it
-              if (body) {
-                normalizedRequest.data = body;
+                // We mutate the passed in normalizedRequest and add the body to it
+                if (body) {
+                  normalizedRequest.data = body;
+                }
+              } catch {
+                // ignore errors here
               }
 
               return Reflect.apply(target, thisArg, args);
