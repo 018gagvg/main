@@ -39,3 +39,4 @@ export * from './lru';
 export * from './buildPolyfills';
 export * from './propagationContext';
 export * from './version';
+export * from './graphql';
