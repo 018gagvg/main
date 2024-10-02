@@ -3,16 +3,6 @@ import { makeBaseNPMConfig, makeNPMConfigVariants } from '@sentry-internal/rollu
 
 export const ESMShim = `
 import cjsUrl from 'node:url';
-import cjsPath from 'node:path';
-import cjsModule from 'node:module';
-
-if(typeof __filename === 'undefined'){
-  globalThis.__filename = cjsUrl.fileURLToPath(import.meta.url);
-}
-
-if(typeof __dirname === 'undefined'){
-  globalThis.__dirname = cjsPath.dirname(__filename);
-}
 
 if(typeof require === 'undefined'){
   globalThis.require = cjsModule.createRequire(import.meta.url);
