@@ -86,7 +86,7 @@ jobs:
       # However, for profiling-node we only want to run certain things when in this specific package
       # something changed, not in any of the dependencies (which include core, utils, ...)
       - name: Determine changed packages
-        uses: dorny/paths-filter@v3.0.1
+        uses: dorny/paths-filter@v3.0.2
         id: changed
         with:
           filters: |
