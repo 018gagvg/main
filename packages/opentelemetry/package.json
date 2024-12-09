@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@opentelemetry/api": "^1.9.0",
-    "@opentelemetry/context-async-hooks": "^1.25.1",
+    "@opentelemetry/context-async-hooks": "^1.29.0",
     "@opentelemetry/core": "^1.25.1",
     "@opentelemetry/sdk-trace-base": "^1.26.0",
     "@opentelemetry/semantic-conventions": "^1.27.0"
